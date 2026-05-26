@@ -1,0 +1,9 @@
+variable,label,pearson_r_raw,pearson_r_log
+mean_rmin_pct,Min Relative Humidity,-0.5511,-0.6527
+mean_vpd_kPa,Vapor Pressure Deficit,0.5028,0.636
+mean_bi,Burning Index,0.6184,0.6068
+mean_erc,Energy Release Component,0.6199,0.602
+mean_tmax_F,Max Temperature,0.0081,0.4169
+mean_lightning,Prior-Day Lightning,0.0462,0.3885
+total_precip_mm,Total Precipitation,-0.1725,0.3708
+mean_wind_ms,Wind Speed,-0.2397,-0.0951

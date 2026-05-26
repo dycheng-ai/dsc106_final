@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>What Actually Causes U.S. Wildfires?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="tab-nav">
+    <div class="tab-nav-inner">
+      <button class="tab-btn active" data-tab="story">The Story</button>
+      <button class="tab-btn" data-tab="writeup">Writeup</button>
+    </div>
+  </nav>
+
+  <div id="story" class="tab-content active">
+
+  <header>
+    <div class="kicker">A Visual Investigation · DSC 106 Project 3</div>
+    <h1>What Actually Causes U.S. Wildfires?</h1>
+    <p class="lede">
+      Folk belief blames lightning. Federal agencies say <strong>85%</strong> are human-caused.
+      But the climate data tells a deeper story—one about vapor, heat, and the invisible
+      stress that turns a landscape into a tinderbox.
+    </p>
+    <p class="byline">By Dylan Cheng, Vipra Bindal &amp; Anwesha Nayak &nbsp;·&nbsp; DSC 106 Project 3</p>
+    <p class="note">
+      <strong>Data sources.</strong> Fire detections from NOAA GOES-16 ABI-L2-FDCC, aggregated to 0.5° weekly cells.
+      Climate variables (vapor pressure deficit, temperature, humidity, burning index, wind, precipitation)
+      from <strong>GridMET</strong> (Climatology Lab, UC Merced), aggregated to matching 0.5° weekly cells.
+      U.S. state outlines from <code>us-atlas</code>. Fire season: May–October 2024.
+    </p>
+    <p class="scroll-hint">↓ Scroll to follow the story</p>
+  </header>
+
+  <section class="scrolly">
+    <div class="scrolly-graphic">
+      <div class="graphic-inner">
+        <div class="stage-progress-bar">
+          <div class="stage-dots" id="stage-dots"></div>
+        </div>
+        <div class="viz-area">
+          <div id="main-viz" class="map"></div>
+          <aside id="state-panel" class="state-panel hidden">
+            <div class="state-panel-placeholder">
+              Click any state on the map to see its climate profile.
+            </div>
+          </aside>
+        </div>
+        <div id="stage-controls" class="stage-controls"></div>
+      </div>
+    </div>
+
+    <div class="scrolly-text">
+      <div class="step" data-stage="1">
+        <div class="step-label">1 / Fire season</div>
+        <h2>Watch the 2024 fire season unfold</h2>
+        <p>
+          Each circle is a <strong>fire cell</strong>—a county-sized patch of land (about
+          50 km on a side) where GOES-16 detected active fire that week. Bigger circles
+          mean more <strong>fire radiative power (MW)</strong>. Drag the slider to walk
+          through June to October.
+        </p>
+        <p>
+          Three burn corridors dominate: the <em class="enc fire">Western mountains</em>,
+          a <em class="enc fire">southern Plains</em> band through Texas and Oklahoma,
+          and the <em class="enc fire">Mississippi Valley</em>. Notice how the worst weeks
+          cluster in midsummer—not a random pattern.
+        </p>
+      </div>
+
+      <div class="step" data-stage="2">
+        <div class="step-label">2 / Climate context</div>
+        <h2>As dryness spikes, fires follow</h2>
+        <p>
+          The map background now shows each state's
+          <strong>Vapor Pressure Deficit (VPD)</strong>—the gap between how much
+          moisture the air <em>could</em> hold and how much it actually holds.
+          High VPD means the atmosphere is aggressively pulling moisture out of
+          vegetation, turning fuel bone-dry.
+        </p>
+        <p>
+          Move the slider week by week. The <em class="enc fire">orange fire circles</em>
+          cluster almost exactly where the <span class="enc vpd">red-hot VPD zones</span>
+          light up—particularly across the West in July and August.
+        </p>
+      </div>
+
+      <div class="step" data-stage="3">
+        <div class="step-label">3 / State patterns</div>
+        <h2>High-VPD states dominated the fire season</h2>
+        <p>
+          Zoom out. Each state is now colored on two axes:
+          <span class="enc vpd">VPD →</span> (left = low, right = high) and
+          <span class="enc fire">fire ↑</span> (bottom = low, top = high).
+          States in the <strong>top-right corner</strong> had both high summer
+          VPD <em>and</em> the most fire—California, Arizona, Nevada, Idaho.
+        </p>
+        <p>
+          Compare this to our earlier lightning map: Florida had the most
+          lightning of any state and barely burned. Here, the pattern is
+          far more consistent. Click any state to see its climate profile.
+        </p>
+      </div>
+
+      <div class="step" data-stage="4">
+        <div class="step-label">4 / The scatter</div>
+        <h2>VPD is a strong predictor. Lightning is not.</h2>
+        <p>
+          One dot per state. The left panel plots mean summer VPD against
+          total fire power—a clear upward trend (r&nbsp;=&nbsp;<strong>+0.64</strong>).
+          The right panel shows the same fire data against prior-day lightning
+          strikes—no meaningful trend (r&nbsp;=&nbsp;<strong>+0.04</strong>).
+        </p>
+        <p>
+          The West (orange) clusters at high VPD and high fire. The East (purple)
+          sits at low VPD with little fire. Meanwhile, high-lightning states like
+          Florida and Alabama appear scattered randomly against fire intensity.
+        </p>
+      </div>
+
+      <div class="step" data-stage="5">
+        <div class="step-label">5 / Humidity mirror</div>
+        <h2>Low humidity tells the same story</h2>
+        <p>
+          Vapor pressure deficit and relative humidity are two sides of the
+          same coin. This map swaps axes: states are now colored by
+          <span class="enc rh">minimum relative humidity</span>—the lower,
+          the more flammable.
+        </p>
+        <p>
+          The West lights up <span class="enc fire">deep red</span> for
+          low humidity and high fire, while humid Eastern states stay cool
+          and unburned. Whichever climate lens you use, the geography of
+          fire risk is consistent—and it follows moisture, not lightning.
+        </p>
+      </div>
+
+      <div class="step" data-stage="6">
+        <div class="step-label">6 / The verdict</div>
+        <h2>Climate variables outpredict lightning every time</h2>
+        <p>
+          Every GridMET variable ranked by how well it correlates with
+          state-level wildfire intensity. VPD and low humidity sit at the
+          top. Burning Index and Energy Release Component—derived indices
+          that blend temperature, humidity, and wind—are similarly strong.
+        </p>
+        <p>
+          Lightning? Near the bottom of the list, barely distinguishable
+          from noise. The atmosphere's <em>dryness</em> is what loads
+          the gun. Ignition source—human or otherwise—is just the trigger.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="tooltip" id="tooltip"></div>
+
+  <footer>
+    <p>
+      Fire data: NOAA GOES-16 ABI-L2-FDCC, aggregated to 0.5° weekly cells.
+      Climate data: GridMET (Abatzoglou 2013, doi:10.1002/joc.3413), UC Merced Climatology Lab,
+      <code>northwestknowledge.net/metdata</code>.
+      State boundaries: <code>us-atlas</code>.
+    </p>
+  </footer>
+  </div><!-- /#story -->
+
+  <article id="writeup" class="tab-content writeup-article">
+    <header class="writeup-header">
+      <div class="kicker">Project Notes</div>
+      <h1>Writeup</h1>
+      <p class="byline">By Dylan Cheng, Vipra Bindal &amp; Anwesha Nayak &nbsp;·&nbsp; DSC 106 Project 3</p>
+    </header>
+
+    <section class="writeup-section">
+      <h2>Motivation</h2>
+      <p>
+        Our prior project established that lightning does not cause most U.S. wildfires—roughly
+        79% of fire cells in 2024 had no detectable lightning in the preceding 24 hours, matching
+        federal agency estimates. But proving a negative leaves a question open: if not lightning,
+        then what?
+      </p>
+      <p>
+        This project pivots to answering that question using the GridMET dataset (Abatzoglou 2013),
+        a high-resolution (∼4 km) daily climate reanalysis covering the contiguous U.S. We focus
+        on seven variables most linked to fire risk in the peer-reviewed literature: vapor pressure
+        deficit (VPD), maximum temperature, minimum relative humidity, precipitation, wind speed,
+        Burning Index (BI), and Energy Release Component (ERC). Our proposition is that
+        climate-driven atmospheric dryness—especially VPD—is a far more consistent predictor of
+        wildfire intensity than lightning strike frequency.
+      </p>
+    </section>
+
+    <section class="writeup-section">
+      <h2>Design Rationale</h2>
+      <p>
+        We retained the same NYT-inspired visual style and scrollytelling architecture from Project 3
+        to maintain narrative continuity. The six stages follow the same "zoom in, zoom out" logic:
+        an animated weekly map establishes the fire season spatially, then we introduce climate
+        variables at progressively coarser scales (cell → state → ranked correlation).
+      </p>
+      <p>
+        Stage 2's VPD choropleth intentionally mirrors Stage 1's fire circle map so viewers can
+        visually compare the two using the same slider, in the same geographic frame. The bivariate
+        choropleth in Stage 3 uses an orange-red palette anchored at the high-VPD, high-fire corner
+        rather than the high-lightning corner from Project 3; this immediately signals that the
+        positive relationship is being visualized, not a surprising absence. The state-level scatter
+        in Stage 4 uses a log scale on fire power to handle California's extreme values and plots
+        both the VPD and lightning panels side by side so the contrast in predictive power is
+        unmistakable without requiring any verbal argument.
+      </p>
+      <p>
+        Stage 5 repeats the bivariate idea for relative humidity (the inverse of VPD) to show
+        that the finding is robust across moisture lenses, not an artifact of how VPD is
+        calculated. Stage 6's horizontal bar chart provides a clean ranked summary of all
+        correlations, explicitly showing lightning at the bottom—the natural ending to a story
+        that began by debunking it.
+      </p>
+    </section>
+
+    <section class="writeup-section">
+      <h2>Development Process</h2>
+      <p>
+        GridMET NetCDF files (seven variables, ∼760 MB total) were downloaded from
+        <code>northwestknowledge.net/metdata/data/</code>, subset to the fire season
+        (May–October 2024) and CONUS bounding box (lat 24–50, lon −125 to −65), coarsened
+        from ∼4 km to 0.5° cells using block-mean aggregation, then joined on
+        (week, lat_bin, lon_bin) to the GOES-16 fire cells from Project 3. State assignments
+        used point-in-polygon via Shapely with the same topojson used by D3. The pipeline
+        is fully reproducible via <code>fetch_gridmet.py</code> and takes approximately 15
+        minutes on a laptop.
+      </p>
+      <p>
+        State-level correlations (Pearson r on log-transformed fire power) were computed in
+        Python across all 48 CONUS states. VPD achieved r = +0.64, minimum humidity
+        r = −0.65, Burning Index r = +0.61, Energy Release Component r = +0.60, and
+        prior-day lightning r = +0.04—confirming that climate moisture variables substantially
+        outperform lightning as predictors of fire intensity.
+      </p>
+      <p>
+        <strong>Dylan</strong> led the GridMET data pipeline, correlation analysis, and
+        Stage 4 scatter visualization. <strong>Vipra</strong> led the D3 animation and
+        bivariate choropleth work for Stages 2–3 and 5. <strong>Anwesha</strong> led the
+        narrative design, Stage 6 bar chart, and writeup. Total development: approximately
+        18–22 person-hours.
+      </p>
+    </section>
+  </article>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+  <script src="script.js"></script>
+  <script>
+    function showTab(tab) {
+      document.querySelectorAll(".tab-btn").forEach(b =>
+        b.classList.toggle("active", b.dataset.tab === tab));
+      document.querySelectorAll(".tab-content").forEach(c =>
+        c.classList.toggle("active", c.id === tab));
+    }
+    document.querySelectorAll(".tab-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        showTab(btn.dataset.tab);
+        history.replaceState(null, "", "#" + btn.dataset.tab);
+        window.scrollTo({ top: 0 });
+      });
+    });
+    if (location.hash === "#writeup") showTab("writeup");
+  </script>
+</body>
+</html>
